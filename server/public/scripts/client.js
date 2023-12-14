@@ -6,6 +6,15 @@ function getKoalas(){
   
 } // end getKoalas
 
+
+function clearForm(){
+  document.querySelector('#nameIn').value = '';
+  document.querySelector('#ageIn').value = '';
+  document.querySelector('#genderIn').value = '';
+  document.querySelector('#readyForTransferIn').value = '';
+  document.querySelector('#notesIn').value = '';
+}
+
 function saveKoala(event){
   event.preventDefault();
   console.log( 'in saveKoala' );
@@ -20,7 +29,7 @@ function saveKoala(event){
   }
   //send the new koala data to the server
   axios.post('/koalas', koalaObject).then((response) => {
-    //clearForm();
+    clearForm();
     //getKoalas();
 }).catch((error) => {
     console.log('Error', error);
