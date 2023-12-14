@@ -1,7 +1,7 @@
 {
   "name": "koalla_holla",
   "version": "1.0.0",
-  "description": "",
+  "description": "This must stop: --------------- ![Nevar again](https://i.makeagif.com/media/8-22-2014/GO_DT4.gif)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,6 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
+    "install": "^0.13.0",
+    "npm": "^10.2.5",
     "pg": "^8.11.3"
-  }
+  },
+  "devDependencies": {},
+  "keywords": []
 }
