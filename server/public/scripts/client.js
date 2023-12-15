@@ -83,7 +83,7 @@ function koalaReadyForTransfer(event) {
   console.log('Getting dataset from component', event.target.closest("tr").dataset.id)
 
   // Retrieving data that has been stored on an element
-  let bookId = event.target.closest("tr").dataset.id
+  let koalaId = event.target.closest("tr").dataset.id
 
   axios.put(`/koalas/${koalaId}`)
       .then((response) => {
