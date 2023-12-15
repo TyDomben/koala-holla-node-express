@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Koalla Holla</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
     <link rel="stylesheet" href="views/styles.css">
     <script defer src="scripts/client.js" charset="utf-8"></script>
   </head>
@@ -24,7 +25,7 @@
       <input type="radio" id="readyForTransferIn" value="No" name="ready_to_transfer">
       <label for="readyForTransferIn">No</label><br>
       <input type="text" id="notesIn" value="" placeholder="Notes">
-      <button type="button" id="addButton">Add Koala</button>
+      <button type="button" id="addButton" onclick="addKoala(event)">Add Koala</button>
     </section>
     <section>
       <h2>All Koalas</h2>
