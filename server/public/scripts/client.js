@@ -36,7 +36,7 @@ function addKoala(event) {
   koala.name = document.getElementById("nameIn").value;
   koala.age = document.getElementById("ageIn").value;
   koala.gender = document.getElementById("genderIn").value;
-  koala.readyForTransfer = document.getElementById("readyForTransferIn").value;
+  koala.ready_for_transfer = document.getElementById("readyForTransferIn").value;
   koala.notes = document.getElementById("notesIn").value;
   saveKoala(koala);
 }
@@ -58,7 +58,7 @@ function clearForm(){
 //     name: document.querySelector('#nameIn').value,
 //     age: document.querySelector('#ageIn').value,
 //     gender: document.querySelector('#genderIn').value,
-//     readyForTransfer: document.querySelector('#readyForTransferIn').value,
+//     ready_for_transfer: document.querySelector('#readyForTransferIn').value,
 //     notes: document.querySelector('#notesIn').value
 //   }
 //   console.log(koalaObject);
@@ -78,7 +78,7 @@ const koalaToAdd= {
   name: document.getElementById("nameIn").value,
   age: document.getElementById("ageIn").value,
   gender: document.getElementById("genderIn").value,
-  readyForTransfer: document.getElementById("readyForTransferIn").value,
+  ready_for_transfer: document.getElementById("readyForTransferIn").value,
   notes: document.getElementById("notesIn").value
 }
 
@@ -144,7 +144,7 @@ function appendsKoalasToTable(arrayOfKoalas) {
   koalaTBody.innerHTML = "";
 
   for (let koala of arrayOfKoalas){
-    console.log("name:", koala.name, "age:", koala.age, "gender:", koala.gender, "readyForTransfer:", koala.readyForTransfer, "notes:", koala.notes );
+    console.log("name:", koala.name, "age:", koala.age, "gender:", koala.gender, "readyForTransfer:", koala.ready_to_transfer, "notes:", koala.notes );
     
     koalaTBody.innerHTML +=
       `
@@ -152,9 +152,9 @@ function appendsKoalasToTable(arrayOfKoalas) {
       <td>${koala.name}</td>
       <td>${koala.age}</td>
       <td>${koala.gender}</td>
-      <td>${koala.readyForTransfer}</td>
+      <td>${koala.ready_to_transfer}</td>
       <td>${koala.notes}</td>
-      <td>${koala.readyForTransfer ? '' : '<button onclick="koalaReadyForTransfer(event)">Ready For Transfer</button>'}</td>
+      <td>${koala.ready_to_transfer ? '' : '<button onclick="koalaReadyForTransfer(event)">Ready For Transfer</button>'}</td>
       <td><button onclick="deleteKoala(event)">Delete</button></td>
       </tr>    
       `;
