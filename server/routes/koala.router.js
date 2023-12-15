@@ -1,7 +1,7 @@
 // express constants
 const express = require("express");
 
-const koalaRouter = express.Router();
+//const koalaRouter = express.Router();
 const router = express.Router();
 
 // DB CONNECTION
@@ -51,42 +51,42 @@ router.get("/", (req, res) => {
 // POST
 // making a newKoala
 router.post("/", (req, res) => {
- // console.log("req.body", req.body);
+  console.log("req.body", req.body);
 
-//   const newKoala = req.body; 
-//   // newKoala
+   const newKoala = req.body; 
+    newKoala
 
-//   // Sending data to DB
-//   // ! Querytext
-//   const queryText = `
-//     INSERT INTO "koalas" ("name", "gender", "ready_to_transfer", "notes")
-//     VALUES
-//         ($1, $2, $3, $4);
-//     `;
+   // Sending data to DB
+   // ! Querytext
+   const queryText = `
+     INSERT INTO "koalas" ("name", "gender", "ready_to_transfer", "notes")
+     VALUES
+         ($1, $2, $3, $4);
+     `;
 
-//   let queryParams = [
-//     newKoala.name,
-//     newKoala.gender,
-//     newKoala.ready_to_transfer,
-//     newKoala.notes,
-//   ];
-//   console.log("QueryText:", queryText);
+   let queryParams = [
+     newKoala.name,
+     newKoala.gender,
+     newKoala.ready_to_transfer,
+     newKoala.notes,
+   ];
+   console.log("QueryText:", queryText);
 
-//   pool
-    // .query(queryText, queryParams)
-    // .then((result) => {
-    //   console.log("QueryText:", queryText);
+   pool
+     .query(queryText, queryParams)
+     .then((result) => {
+       console.log("QueryText:", queryText);
       res.sendStatus(201);
     })
-// })
-//     .catch((error) => {
-//       console.log("Woops, error making query: ", queryText);
-//       console.error(error);
-//       res.sendStatus(500);
-//     });
-// });
-
-// PUT
+ 
+     .catch((error) => {
+       console.log("Woops, error making query: ", queryText);
+       console.error(error);
+       res.sendStatus(500);
+     });
+ 
+    })
+ //PUT
 
 router.put("/:id", (req, res) => {
   let koalaId = req.params.id;
@@ -129,4 +129,4 @@ router.delete("/:id", (req, res) => {
     });
 });
 
-module.exports = koalaRouter;
+module.exports = router;
