@@ -17,8 +17,8 @@ router.get("/", (req, res) => {
   pool
     .query(queryText)
     .then((result) => {
-      console.log(result.rows);
-      console.log("Koala Holla Backend is running");
+      // console.log(result.rows);
+      // console.log("Koala Holla Backend is running");
       res.send(result.rows);
     })
     .catch((error) => {
@@ -112,6 +112,7 @@ router.delete("/:id", (req, res) => {
   // Accessing the ID directly from req.params
   // No need to assign it to another variable like reqId
   let koalaId = req.params.id;
+  console.log("koala id:", koalaId);
 
   // SQL query to delete the book with the specified ID
   let sqlText = "DELETE FROM koalas WHERE id=$1;";

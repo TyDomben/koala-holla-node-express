@@ -17,7 +17,7 @@ VALUES
 ('Scotty', 'M', 4, TRUE, 'Born in Guatemala.'),
 ('Jean', 'F', 5, TRUE, 'Allergic to lots of lava.'),
 ('Ororo', 'F', 7, FALSE, 'Loves listening to Paula (Abdul).'),
-('K''Leaf',	'NB', 15, 'N', 'Never refuses a treat.'),
+('K''Leaf',	'NB', 15, FALSE, 'Never refuses a treat.'),
 ('Charlie',	'M', 9, TRUE, 'Favorite band is Nirvana.'),
 ('Betsy', 'F', 4, TRUE, 'Has a pet iguana.');
 
