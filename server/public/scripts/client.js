@@ -5,34 +5,24 @@ console.log( 'js' );
  */
 let koalaTBody = document.getElementById('viewKoalas');
 
-/**
- * DUMMY STATE
- */
-let koalaArray = [{id: 1, name: 'Scotty', gender: 'M', age: 4, readyForTransfer: true, notes: 'Born in Guatemala.'},
-{id: 2, name: 'Jean', gender: 'F', age: 5, readyForTransfer: true, notes: 'Allergic to lots of lava.'},
-{id: 3, name: 'Ororo', gender: 'F', age: 7, readyForTransfer: false, notes: 'Loves listening to Paula (Abdul).'},
-{id: 4, name: 'K\'Leaf',	gender: 'NB', age: 15, readyForTransfer: 'N', notes: 'Never refuses a treat.'},
-{id: 5, name: 'Charlie',	gender: 'M', age: 9, readyForTransfer: true, notes: 'Favorite band is Nirvana.'},
-{id: 6, name: 'Betsy', gender: 'F', age: 4, readyForTransfer: true, notes: 'Has a pet iguana.'}];
-
 function getKoalas(){
   console.log( 'in getKoalas' );
   // axios call to server to get koalas
 
-  // axios({
-  //   method: "GET",
-  //   url: "/koalas"
-  // })
-  // .then((response) => {
-  //   console.log(response.data);
+  axios({
+    method: "GET",
+    url: "/koalas"
+  })
+  .then((response) => {
+    console.log(response.data);
     // send in the array of objects
-    // appendsKoalasToTable(response.data);
-    appendsKoalasToTable(koalaArray);
-  // })
-  // .catch((error) => {
-  //   console.log("whoops, there be an error in here!");
-  //   console.error(error);
-  // })
+    appendsKoalasToTable(response.data);
+    // appendsKoalasToTable(koalaArray);
+  })
+  .catch((error) => {
+    console.log("whoops, there be an error in here!");
+    console.error(error);
+  })
   
 } // end getKoalas
 
@@ -130,29 +120,19 @@ function deleteKoala(event) {
   const id = event.target.closest("tr").dataset.id;
   console.log("id of row to delete:", id);
 
-  // axios({
-  //   method: "DELETE",
-  //   url: `/delete/${id}`
-  // })
-  // .then((response) => {
-  //   console.log("response:", response.data);
-  //   // refresh the table
-  //   getKoalas();
-  // })
-  // .catch((error) => {
-  //   console.log("whoops, there be an error in here!");
-  //   console.error(error);
-  // })
-  let foundIndex;
-  for (let i = 0; i < koalaArray.length; i++) {
-    if (koalaArray[i].id == id){
-      foundIndex = i;
-    }
-  }
-
-  koalaArray.splice(foundIndex, 1);
-  // refresh the table
-  getKoalas();
+  axios({
+    method: "DELETE",
+    url: `/koalas/${id}`
+  })
+  .then((response) => {
+    console.log("response:", response.data);
+    // refresh the table
+    getKoalas();
+  })
+  .catch((error) => {
+    console.log("whoops, there be an error in here!");
+    console.error(error);
+  })
 }
 
 function appendsKoalasToTable(arrayOfKoalas) {
