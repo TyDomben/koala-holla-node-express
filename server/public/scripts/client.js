@@ -1,8 +1,28 @@
 console.log( 'js' );
 
+/**
+ * DOM ELEMENTS
+ */
+let koalaTBody = document.getElementById('viewKoalas');
+
+
 function getKoalas(){
   console.log( 'in getKoalas' );
   // axios call to server to get koalas
+
+  axios({
+    method: "GET",
+    url: "/koalas"
+  })
+  .then((response) => {
+    console.log(response.data);
+    // send in the array of objects
+    appendsKoalasToTable(response.data);
+  })
+  .catch((error) => {
+    console.log("whoops, there be an error in here!");
+    console.error(error);
+  })
   
 } // end getKoalas
 
@@ -93,6 +113,33 @@ function koalaReadyForTransfer(event) {
           console.log('Error', error);
           alert('Something went wrong');
       });
+}
+
+appendsKoalasToTable(arrayOfKoalas) {
+  console.log("made it into the appendsKoalasToTable - function!");
+  console.log("our koalas:");
+  console.table(arrayOfKoalas);
+
+  // reset inner html of the table body
+  koalaTBody.innerHTML = "";
+
+  for (let koala of arrayOfKoalas){
+    console.log("id:", id, "name:", koala.name, "age:", koala.age, "gender:", koala.gender, "readyForTransfer:", koala.readyForTransfer, "notes:", koala.notes );
+    
+    koalaTBody.innerHTML +=
+      `
+      <tr data-id="${koala.id}">
+      <td>${koala.name}</td>
+      <td>${koala.age}</td>
+      <td>${koala.gender}</td>
+      <td>${koala.readyForTransfer ? '' : '<button onclick="koalaReadyForTransfer(event)">Ready For Transfer</button>'}</td>
+      <td>${koala.notes}</td>
+      <td>${koala.age}</td>
+      <td>${koala.age}</td>
+      </tr>    
+      `;
+    
+  }
 }
 
 getKoalas();
