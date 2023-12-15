@@ -6,7 +6,7 @@ console.log( 'js' );
 let koalaTBody = document.getElementById('viewKoalas');
 
 function getKoalas(){
-  console.log( 'in getKoalas' );
+  // console.log( 'in getKoalas' );
   // axios call to server to get koalas
 
   axios({
@@ -14,7 +14,7 @@ function getKoalas(){
     url: "/koalas"
   })
   .then((response) => {
-    console.log(response.data);
+    // console.log(response.data);
     // send in the array of objects
     appendsKoalasToTable(response.data);
     // appendsKoalasToTable(koalaArray);
@@ -31,13 +31,14 @@ function getKoalas(){
 function addKoala(event) {
   event.preventDefault();
 
-  console.log("Submit button clicked.");
+  // console.log("Submit button clicked.");
   let koala = {};
   koala.name = document.getElementById("nameIn").value;
-  koala.age = document.getElementById("ageIn").value;
+  koala.age = parseInt(document.getElementById("ageIn").value);
   koala.gender = document.getElementById("genderIn").value;
-  koala.ready_for_transfer = document.getElementById("readyForTransferIn").value;
+  koala.ready_to_transfer = document.getElementById("Yes").checked,
   koala.notes = document.getElementById("notesIn").value;
+  console.log("koala:", koala);
   saveKoala(koala);
 }
 
@@ -45,47 +46,17 @@ function clearForm(){
   document.getElementById('nameIn').value = '';
   document.getElementById('ageIn').value = '';
   document.getElementById('genderIn').value = '';
-  document.getElementById('readyForTransferIn').value = '';
+  document.getElementById('No').checked = true;
   document.getElementById('notesIn').value = '';
 }
 
-// function saveKoala(event){
-//   //event.preventDefault();
-//   console.log( 'in saveKoala' );
-//   // axios call to server to get koalas
-//   //made this an object to create request body
-//   let koalaObject ={
-//     name: document.querySelector('#nameIn').value,
-//     age: document.querySelector('#ageIn').value,
-//     gender: document.querySelector('#genderIn').value,
-//     ready_for_transfer: document.querySelector('#readyForTransferIn').value,
-//     notes: document.querySelector('#notesIn').value
-//   }
-//   console.log(koalaObject);
-//   //send the new koala data to the server
-//   axios.post('/koalas', koalaObject).then((response) => {
-//     clearForm();
-//     getKoalas();
-// }).catch((error) => {
-//     console.log('Error', error);
-//     alert('Something went wrong');
-// });
- 
-// }
-
 function saveKoala(koalaAdded) {
-const koalaToAdd= {
-  name: document.getElementById("nameIn").value,
-  age: document.getElementById("ageIn").value,
-  gender: document.getElementById("genderIn").value,
-  ready_for_transfer: document.getElementById("readyForTransferIn").value,
-  notes: document.getElementById("notesIn").value
-}
+console.log('We are checking what the inputs are', koalaAdded);
 
   axios({
     method: "POST",
     url: "/koalas",
-    data: koalaToAdd,
+    data: koalaAdded,
   })
     .then(function (response) {
       console.log("saveKoala()", response.data);
@@ -136,15 +107,15 @@ function deleteKoala(event) {
 }
 
 function appendsKoalasToTable(arrayOfKoalas) {
-  console.log("made it into the appendsKoalasToTable - function!");
-  console.log("our koalas:");
-  console.table(arrayOfKoalas);
+  // console.log("made it into the appendsKoalasToTable - function!");
+  // console.log("our koalas:");
+  // console.table(arrayOfKoalas);
 
   // reset inner html of the table body
   koalaTBody.innerHTML = "";
 
   for (let koala of arrayOfKoalas){
-    console.log("name:", koala.name, "age:", koala.age, "gender:", koala.gender, "readyForTransfer:", koala.ready_to_transfer, "notes:", koala.notes );
+    // console.log("name:", koala.name, "age:", koala.age, "gender:", koala.gender, "readyForTransfer:", koala.ready_to_transfer, "notes:", koala.notes );
     
     koalaTBody.innerHTML +=
       `

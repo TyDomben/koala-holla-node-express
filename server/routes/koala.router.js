@@ -52,9 +52,10 @@ router.get("/", (req, res) => {
 // making a newKoala
 router.post("/", (req, res) => {
   console.log("req.body", req.body);
+  console.log("req.body.ready_to_transfer", req.body.ready_to_transfer);
 
   const newKoala = req.body;
-  newKoala
+//   newKoala
 
   // Sending data to DB
   // ! Querytext
@@ -72,6 +73,7 @@ router.post("/", (req, res) => {
     newKoala.notes,
   ];
   console.log("QueryText:", queryText);
+  console.log("QueryParams:", queryParams);
 
   pool
     .query(queryText, queryParams)
